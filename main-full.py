@@ -28,11 +28,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-        "https://*.netlify.app", 
-        "https://*.railway.app",
-        "https://*.vercel.app"
-    ],
+ "http://localhost:3000",
+        "https://effervescent-gaufre-c465b9.netlify.app"
+            ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
