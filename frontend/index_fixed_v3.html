@@ -2295,7 +2295,7 @@ async function processResume() {
         const formData = new FormData();
         formData.append('file', selectedFile);
         
-        const resumeResponse = await fetch('http://localhost:8001/api/upload-resume', {
+        const resumeResponse = https://ai-resume-tool-clean.onrender.com/api', {
             method: 'POST',
             body: formData
         });
@@ -2316,7 +2316,7 @@ async function processResume() {
         const jobFormData = new FormData();
         jobFormData.append('job_description', jobDescription);
         
-        const jobResponse = await fetch('http://localhost:8001/api/analyze-job', {
+        const jobResponse = await fetch('https://ai-resume-tool-clean.onrender.com/api', {
             method: 'POST',
             body: jobFormData
         });
@@ -2358,7 +2358,7 @@ async function customizeWithAI() {
         formData.append('job_description', document.getElementById('jobDescription').value);
         formData.append('customization_level', 'moderate');
         
-        const response = await fetch('http://localhost:8001/api/customize-resume', {
+        const response = await fetch('https://ai-resume-tool-clean.onrender.com/api', {
             method: 'POST',
             body: formData
         });
@@ -2807,7 +2807,7 @@ function generateResumeHTML(content, template) {
                 formData.append('position_title', positionTitle);
                 formData.append('tone', selectedTone);
                 
-                const response = await fetch( 'http://localhost:8001/api/generate-cover-letter', {
+                const response = await fetch( 'https://ai-resume-tool-clean.onrender.com/api', {
                     method: 'POST',
                     body: formData
                 });
@@ -2915,7 +2915,7 @@ if (exportBtn) {
                 formData.append('resume_text', resumeData.extracted_text);
                 formData.append('job_description', document.getElementById('jobDescription').value);
                 
-                const response = await fetch( 'http://localhost:8001/api/analyze-resume-score', {
+                const response = await fetch( 'https://ai-resume-tool-clean.onrender.com/api', {
                     method: 'POST',
                     body: formData
                 });
@@ -3007,7 +3007,7 @@ if (exportBtn) {
                 formData.append('improvement_suggestions', '');
                 formData.append('user_email', 'anonymous');
                 
-                const response = await fetch( 'http://localhost:8001/api/submit-feedback', {
+                const response = await fetch( 'https://ai-resume-tool-clean.onrender.com/apik', {
                     method: 'POST',
                     body: formData
                 });
@@ -3515,7 +3515,7 @@ async function selectTemplate(templateName) {
         formData.append('template_name', templateName);
         formData.append('save_selection', 'true');
         
-        const response = await fetch( 'http://localhost:8001/api/select-template', {
+        const response = await fetch( 'https://ai-resume-tool-clean.onrender.com/api', {
             method: 'POST',
             body: formData
         });
@@ -3559,7 +3559,7 @@ async function getTemplateRecommendations() {
         formData.append('industry', ''); // Auto-detect
         formData.append('experience_level', 'mid'); // Default
         
-        const response = await fetch( 'http://localhost:8001/api/template-recommendations', {
+        const response = await fetch( 'https://ai-resume-tool-clean.onrender.com/api', {
             method: 'POST',
             body: formData
         });
@@ -3680,7 +3680,7 @@ async function generateMultipleTemplates() {
         formData.append('job_description', document.getElementById('jobDescription').value);
         formData.append('template_list', 'modern,classic,minimal'); // Generate top 3
         
-        const response = await fetch( 'http://localhost:8001/api/generate-multiple-templates', {
+        const response = await fetch( 'https://ai-resume-tool-clean.onrender.com/api', {
             method: 'POST',
             body: formData
         });
@@ -3764,7 +3764,7 @@ async function generateEnhancedPreview() {
         formData.append('resume_text', resumeData.extracted_text);
         formData.append('job_description', document.getElementById('jobDescription').value);
         
-        const response = await fetch( 'http://localhost:8001/api/template-preview', {
+        const response = await fetch( 'https://ai-resume-tool-clean.onrender.com/api', {
             method: 'POST',
             body: formData
         });
@@ -3819,7 +3819,7 @@ async function saveTemplateSelection() {
         formData.append('template_name', selectedTemplate);
         formData.append('customizations', JSON.stringify(customizations));
         
-        const response = await fetch( 'http://localhost:8001/api/apply-template-customizations', {
+        const response = await fetch( 'https://ai-resume-tool-clean.onrender.com/api', {
             method: 'POST',
             body: formData
         });
