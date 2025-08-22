@@ -2262,13 +2262,20 @@ const resumeResponse = await fetch('https://ai-resume-tool-clean.onrender.com/ap
         if (!resumeResponse.ok) {
             throw new Error(`Resume upload failed: ${resumeResponse.status}`);
         }
-}
+
         
         resumeData = await resumeResponse.json();
         console.log('✅ Resume Data Received:', resumeData);
         console.log('📄 Extracted Text Length:', resumeData.extracted_text?.length);
         console.log('📄 First 200 chars:', resumeData.extracted_text?.substring(0, 200));
         updateProgress(50);
+
+} catch (error) {
+    console.error('Error:', error);
+    hideLoading();
+    showError(`Processing failed: ${error.message}`);
+    updateProgress(0);
+}
         
         // Step 2: Analyze job description
         showLoading('AI is analyzing the job requirements...');
