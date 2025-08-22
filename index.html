@@ -2254,7 +2254,7 @@ async function processResume() {
         const formData = new FormData();
         formData.append('file', selectedFile);
         
-        const resumeResponse = https://ai-resume-tool-clean.onrender.com/api', {
+const resumeResponse = await fetch('https://ai-resume-tool-clean.onrender.com/api/upload-resume', {
             method: 'POST',
             body: formData
         });
@@ -2262,6 +2262,7 @@ async function processResume() {
         if (!resumeResponse.ok) {
             throw new Error(`Resume upload failed: ${resumeResponse.status}`);
         }
+}
         
         resumeData = await resumeResponse.json();
         console.log('✅ Resume Data Received:', resumeData);
