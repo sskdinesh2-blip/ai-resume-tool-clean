@@ -5,7 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Resume Customizer Pro</title>
     <!-- Libraries for PDF generation and animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+async function exportCoverLetter() {
+    if (!window.generatedCoverLetter) {
+        showError('Please generate a cover letter first!');
+        return;
+    }
+    try {
+        const coverLetterText = typeof generatedCoverLetter.cover_letter_content === 'string' 
+            ? generatedCoverLetter.cover_letter_content 
+            : JSON.stringify(generatedCoverLetter.cover_letter_content, null, 2);
+        const blob = new Blob([coverLetterText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Cover-Letter-${Date.now()}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showSuccess('Cover letter downloaded successfully!');
+        if (typeof updateExportStats === 'function') {
+            updateExportStats('cover');
+        }
+    } catch (error) {
+        console.error('Cover letter export error:', error);
+        showError('Failed to export cover letter. Please try again.');
+    }
+}
+
 </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -35,7 +64,13 @@
             transform: translateX(100%);
             opacity: 0;
         }
-to {
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    to {
         transform: translateX(0);
         opacity: 1;
     }
@@ -76,7 +111,14 @@ to {
                 transform: translateY(0);
             }
         }
-.header {
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+        
+        .header {
             background: linear-gradient(45deg, #2c3e50, #3498db);
             color: white;
             padding: 30px;
@@ -2254,7 +2296,7 @@ async function processResume() {
         const formData = new FormData();
         formData.append('file', selectedFile);
         
-const resumeResponse = await fetch('https://ai-resume-tool-clean.onrender.com/api/upload-resume', {
+        const resumeResponse = https://ai-resume-tool-clean.onrender.com/api', {
             method: 'POST',
             body: formData
         });
@@ -2262,20 +2304,12 @@ const resumeResponse = await fetch('https://ai-resume-tool-clean.onrender.com/ap
         if (!resumeResponse.ok) {
             throw new Error(`Resume upload failed: ${resumeResponse.status}`);
         }
-
         
         resumeData = await resumeResponse.json();
         console.log('✅ Resume Data Received:', resumeData);
         console.log('📄 Extracted Text Length:', resumeData.extracted_text?.length);
         console.log('📄 First 200 chars:', resumeData.extracted_text?.substring(0, 200));
         updateProgress(50);
-
-} catch (error) {
-    console.error('Error:', error);
-    hideLoading();
-    showError(`Processing failed: ${error.message}`);
-    updateProgress(0);
-}
         
         // Step 2: Analyze job description
         showLoading('AI is analyzing the job requirements...');
@@ -3869,36 +3903,6 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('🤖 AI recommendations and A/B testing ready!');
 });
     </script>
-
-<script>
-async function exportCoverLetter() {
-    if (!window.generatedCoverLetter) {
-        showError('Please generate a cover letter first!');
-        return;
-    }
-    try {
-        const coverLetterText = typeof generatedCoverLetter.cover_letter_content === 'string' 
-            ? generatedCoverLetter.cover_letter_content 
-            : JSON.stringify(generatedCoverLetter.cover_letter_content, null, 2);
-        const blob = new Blob([coverLetterText], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `Cover-Letter-${Date.now()}.txt`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        showSuccess('Cover letter downloaded successfully!');
-        if (typeof updateExportStats === 'function') {
-            updateExportStats('cover');
-        }
-    } catch (error) {
-        console.error('Cover letter export error:', error);
-        showError('Failed to export cover letter. Please try again.');
-    }
-}
-</script>
 </body>
 </html>
 
