@@ -15,7 +15,7 @@ async function exportCoverLetter() {
     try {
         const coverLetterText = typeof generatedCoverLetter.cover_letter_content === 'string' 
             ? generatedCoverLetter.cover_letter_content 
-            : JSON.stringify(generatedCoverLetter.cover_letter_content, null, 2);
+//            : JSON.stringify(generatedCoverLetter.cover_letter_content, null, 2);
         const blob = new Blob([coverLetterText], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -2625,7 +2625,7 @@ function generateResumeHTML(content, template) {
         function generateCreativeTemplate(content) {
             const skills = Array.isArray(content.prioritized_skills) 
                 ? content.prioritized_skills 
-                : ['Creative Design', 'Innovation', 'Leadership', 'Digital Strategy'];
+//                : ['Creative Design', 'Innovation', 'Leadership', 'Digital Strategy'];
 
             return `
                 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; margin: -40px -40px 30px -40px; position: relative; overflow: hidden;">
@@ -2711,7 +2711,7 @@ function generateResumeHTML(content, template) {
         function generateMinimalTemplate(content) {
             const skills = Array.isArray(content.prioritized_skills) 
                 ? content.prioritized_skills 
-                : ['Data Analysis', 'Strategy', 'Leadership', 'Innovation'];
+//                : ['Data Analysis', 'Strategy', 'Leadership', 'Innovation'];
 
             return `
                 <div style="border-bottom: 1px solid #eee; padding-bottom: 30px; margin-bottom: 30px;">
